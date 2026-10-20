@@ -1,0 +1,5 @@
+# Hatchable project manifest. This file marks the folder as a
+# Hatchable project and declares the services it uses.
+# Reference: https://hatchable.com/docs/developers/config
+name = "UNO with Friends"
+description = "A colorful, mobile-friendly UNO-style card game where friends can create or join rooms, play turns together, and enjoy a lightweight party game."
