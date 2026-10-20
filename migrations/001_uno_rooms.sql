@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS uno_rooms (
+  code TEXT PRIMARY KEY,
+  host_id TEXT NOT NULL,
+  status TEXT NOT NULL DEFAULT 'waiting',
+  state JSONB NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+)

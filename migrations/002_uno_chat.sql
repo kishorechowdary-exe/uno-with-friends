@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS uno_chat (
+  id BIGSERIAL PRIMARY KEY,
+  room_code TEXT NOT NULL REFERENCES uno_rooms(code) ON DELETE CASCADE,
+  player_id TEXT NOT NULL,
+  player_name TEXT NOT NULL,
+  message TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+)

@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#10151b">
+  <title>UNO with Friends — Card Night</title>
+  <link rel="stylesheet" href="/theme.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/"><span class="brand-mark">U</span><span>UNO <em>WITH FRIENDS</em></span></a>
+      <div class="top-actions"><span class="online-dot"></span><span id="connectionLabel">Ready to play</span><button class="icon-btn" id="soundToggle" aria-label="Toggle sound">♫</button></div>
+    </header>
+    <main id="lobby" class="lobby">
+      <section class="hero">
+        <div class="eyebrow"><span class="spark">✦</span> YOUR NEXT GAME NIGHT STARTS HERE</div>
+        <h1>One more round.<br><span>One more chance.</span></h1>
+        <p class="hero-copy">Bring the group together. Make a room, invite your friends, and let the chaos begin.</p>
+        <div class="hero-cards" aria-hidden="true"><div class="floating-card red"><span>7</span><b>UNO</b></div><div class="floating-card yellow"><span>↻</span></div><div class="floating-card blue"><span>2</span></div><div class="floating-card wild"><span>W</span></div></div>
+      </section>
+      <section class="lobby-panel">
+        <div class="panel-heading"><div><div class="eyebrow muted">GET IN THE GAME</div><h2>Let's play, friend.</h2></div><span class="panel-icon">♠</span></div>
+        <label class="field-label" for="playerName">YOUR NICKNAME</label><input id="playerName" class="text-field" maxlength="18" placeholder="e.g. Card Shark" autocomplete="nickname">
+        <button id="createRoomBtn" class="primary-btn"><span>＋</span> Create a room <span class="btn-arrow">↗</span></button>
+        <div class="or-divider"><span></span> OR JOIN YOUR CREW <span></span></div>
+        <label class="field-label" for="roomCodeInput">ROOM CODE</label><div class="join-row"><input id="roomCodeInput" class="text-field code-input" maxlength="6" placeholder="ENTER CODE" autocomplete="off"><button id="joinRoomBtn" class="secondary-btn">Join room <span>→</span></button></div>
+        <p id="lobbyMessage" class="message" role="status"></p><div class="lobby-foot"><span>♧</span> 2–8 players · Free to play · No download needed</div>
+      </section>
+      <section class="how-strip"><div class="how-item"><span class="how-icon">01</span><div><b>Make a room</b><small>Start a private game</small></div></div><div class="how-item"><span class="how-icon">02</span><div><b>Share the code</b><small>Friends join from any phone</small></div></div><div class="how-item"><span class="how-icon">03</span><div><b>Play your cards</b><small>First player out wins</small></div></div></section>
+    </main>
+    <main id="game" class="game hidden">
+      <div class="game-heading"><div><div class="eyebrow muted">PRIVATE TABLE</div><h1>Game night <span class="heading-dot">●</span></h1><div class="room-meta">ROOM <strong id="roomCodeLabel">------</strong><button id="copyCodeBtn" class="tiny-btn">Copy invite ↗</button></div></div><button id="leaveRoomBtn" class="leave-btn">Leave game ↗</button></div>
+      <div class="game-layout">
+        <section class="table-area">
+          <div class="table-topline"><span id="roundLabel">ROUND 01</span><span id="turnLabel">WAITING FOR PLAYERS</span></div>
+          <div class="felt-table"><div id="opponents" class="opponents"></div><div class="table-center"><div class="draw-pile-wrap"><div class="pile-label">DRAW PILE</div><button id="drawPileBtn" class="uno-card back-card" aria-label="Draw a card or pass"><span class="card-back-logo">UNO</span><small>DRAW / PASS</small></button><div id="deckCount" class="pile-count">0 cards</div></div><div class="discard-wrap"><div class="pile-label">TOP CARD</div><div id="topCard" class="uno-card red"><span>7</span><b>UNO</b></div><div id="activeColor" class="active-color"><i class="swatch red-swatch"></i><span>RED</span></div></div></div><div id="turnBanner" class="turn-banner">Create a room to start playing</div></div>
+          <div class="hand-header"><div><span class="eyebrow muted">YOUR HAND</span><h2 id="handTitle">Your cards <span id="handCount">0</span></h2></div><div id="unoHint" class="uno-hint"></div></div>
+          <div id="hand" class="hand"><div class="empty-hand">Your cards will appear here once the game begins.</div></div>
+          <div class="game-actions"><button id="sayUnoBtn" class="uno-btn" disabled>UNO!</button><p id="actionMessage" class="message" role="status">Waiting for your next move.</p><button id="startGameBtn" class="primary-btn start-btn hidden">Start game <span>→</span></button></div>
+        </section>
+        <aside class="sidebar">
+          <div class="side-card players-card"><div class="side-title"><h3>At the table</h3><span id="playerCount">0/8</span></div><div id="playerList" class="player-list"></div><div id="hostNote" class="host-note">Room host can start the game once 2+ players join.</div></div>
+          <div class="side-card rules-card"><div class="side-title"><h3>Quick rules</h3><span>✦</span></div><div class="rule-line"><span class="rule-dot red-dot"></span><p>Match the <b>colour</b> or the <b>number</b>.</p></div><div class="rule-line"><span class="rule-dot yellow-dot"></span><p>Skip, reverse &amp; draw cards change the round.</p></div><div class="rule-line"><span class="rule-dot wild-dot"></span><p>Wild cards let you choose the next colour.</p></div><div class="rule-line"><span class="rule-dot green-dot"></span><p>One card left? Hit <b>UNO!</b></p></div><p class="small-note">Friendly house rules for this version.</p></div>
+          <div class="side-card chat-card"><div class="side-title"><h3>Table chat</h3><span>✉</span></div><div id="chatMessages" class="chat-messages"><p class="chat-empty">The banter starts here.</p></div><form id="chatForm" class="chat-form"><input id="chatInput" maxlength="160" placeholder="Say something..." aria-label="Chat message"><button aria-label="Send chat">↗</button></form></div>
+        </aside>
+      </div>
+      <footer class="game-footer">PLAY NICE. PLAY SMART. <span>UNO WITH FRIENDS · MADE FOR GAME NIGHT</span></footer>
+    </main>
+    <div id="colorModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="colorModalTitle"><div class="modal-card"><div class="eyebrow muted">YOUR MOVE</div><h2 id="colorModalTitle">Choose a colour</h2><p>What colour should everyone play next?</p><div class="color-options"><button data-color="red" class="choose-color red-option" aria-label="Red"></button><button data-color="yellow" class="choose-color yellow-option" aria-label="Yellow"></button><button data-color="green" class="choose-color green-option" aria-label="Green"></button><button data-color="blue" class="choose-color blue-option" aria-label="Blue"></button></div><button id="cancelColorBtn" class="cancel-btn">Never mind</button></div></div>
+    <div id="toast" class="toast" role="status"></div><footer class="site-footer">A little friendly competition never hurt. <span>♥</span></footer>
+  </div>
+  <script src="/__hatchable/events.js"></script><script src="/app.js"></script>
+</body>
+</html>
